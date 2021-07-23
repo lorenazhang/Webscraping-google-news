@@ -12,10 +12,42 @@ from sklearn.decomposition import NMF, LatentDirichletAllocation
 import joblib
 from newspaper import Article
 import pickle
+import smtplib
+from email.message import EmailMessage
+import pwd_google
+
+def send_email(login
+               , password
+               , subject
+               , content = None
+               , attachment = None
+               , to_list = "lorenazhang@gmail.com,jingyao.zhang@wellsfargo.com"
+               ):
+    msg = EmailMessage()
+    msg.set_content(content)
+    msg['From'] = login
+    msg['Subject'] = subject
+    msg['To'] = to_list
+    #attachment
+    with open(attachment, 'rb') as content_file:
+        content = content_file.read()
+        msg.add_attachment(content, maintype='application', subtype='pickle', filename = attachment)
+
+    server = smtplib.SMTP('smtp.gmail.com', 587)
+    server.set_debuglevel(1)
+    server.ehlo()
+    server.starttls()
+    server.login(login, password)
+    server.send_message(msg)
+    server.quit()
+    print('Email successfully sent!')
 
 today = pd.Timestamp.today()
 sunday = today - datetime.timedelta(days = today.dayofweek) + datetime.timedelta(days = 6)
 sunday = sunday.strftime('%Y%m%d')
+
+LOGIN    = "lorenazhang@gmail.com"
+PASSWORD = pwd_google.pwd
 
 # Blank dataframe, based on fields identified later
 
@@ -83,6 +115,18 @@ df_final['published_date'] = df_final['published'].apply(lambda x: no_timezone(x
 df_final.drop(columns = ['published'], inplace = True)
 df_final['keywords'] = [','.join(a) for a in df_final['keywords'].copy(deep=True)]
 
-df_final.head()
-
 pickle.dump(df_final, open(f'df_googlenews_{sunday}.p', 'wb'))
+
+#sent email with attachment
+try:
+    send_email(login = LOGIN
+              , password = pwd_google.pwd
+              , subject = f'Google News for {sunday}'
+              , content = f'Please find attached the google news for week {sunday}'
+              , attachment = f'df_googlenews_{sunday}.p')
+except:
+    send_email(login = LOGIN
+              , password = pwd_google.pwd
+              , subject = 'Web scrapping Google news failed'
+              , content = f'Job failed for Web scrapping Google news for week {sunday}'
+              )
