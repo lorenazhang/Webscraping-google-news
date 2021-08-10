@@ -7,4 +7,4 @@
 10 4 * * 7 python3 scrape_google_weekly.py
 ```
 ### pwd_google.py
-pwd = 'put your password here'
+```pwd = 'put your password here'```
