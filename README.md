@@ -1,5 +1,5 @@
 ### Web Sraping security and google news
-The ```scrape_security_daily.py``` and ```scrape_google_weekly.py``` is running by cron job to download daily/weekly news into a pickle file, then send it via email as attachment. Gmail login and password needs to be stored in advance as instructed below. 
+The ```scrape_security_daily.py``` and ```scrape_google_weekly.py``` is running by cron job to download daily/weekly news into a pickle file, then send it via email as attachment. Gmail login and password needs to be stored in advance in a seperate file. 
 
 ### Cron Jobs
 ```
