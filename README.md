@@ -7,7 +7,7 @@
 10 4 * * 7 python3 scrape_google_weekly.py
 ```
 ### pwd_google.py
-save google password in pwd_google.py using below format
+save google login and password in pwd_google.py using below format
 ```
 login = 'put email here'
 pwd = 'put password here'
