@@ -7,6 +7,9 @@ The ```scrape_security_daily.py``` and ```scrape_google_weekly.py``` is running 
 10 5 * * * python3 scrape_security_daily.py
 10 4 * * 7 python3 scrape_google_weekly.py
 ```
+### For mac, cron needs to get access to all disks
+https://blog.bejarano.io/fixing-cron-jobs-in-mojave/
+
 ### pwd_google.py
 save google login and password in pwd_google.py using below format
 ```
