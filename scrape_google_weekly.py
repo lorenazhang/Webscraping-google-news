@@ -48,7 +48,7 @@ try:
     sunday = today - datetime.timedelta(days = today.dayofweek) + datetime.timedelta(days = 6)
     sunday = sunday.strftime('%Y%m%d')
 
-    LOGIN    = "lorenazhang@gmail.com"
+    LOGIN    = pwd_google.login
     PASSWORD = pwd_google.pwd
 
     # Blank dataframe, based on fields identified later
