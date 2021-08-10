@@ -48,7 +48,7 @@ try:
     today_str = today.strftime('%Y%m%d')
     filename = 'securitynews_' + datetime.datetime.now().strftime("date_%Y.%m.%d_time_%H.%M") + '.pkl'
 
-    LOGIN    = "lorenazhang@gmail.com"
+    LOGIN    = pwd_google.login
     PASSWORD = pwd_google.pwd
 
     ## Web Scraping
