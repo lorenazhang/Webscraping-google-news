@@ -8,4 +8,7 @@
 ```
 ### pwd_google.py
 save google password in pwd_google.py using below format
-```pwd = 'put your password here'```
+```
+login = 'put email here'
+pwd = 'put password here'
+```
