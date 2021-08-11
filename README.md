@@ -12,7 +12,8 @@ https://www.geeksforgeeks.org/cron-command-in-linux-with-examples/
    https://blog.bejarano.io/fixing-cron-jobs-in-mojave/
 2. install commond line tools package:
    ```xcode-select --install```
-4. ```which 'python'``` in terminal to get the correct python path 
+3. ```which 'python'``` in terminal to get the correct python path 
+4. ```crontab -e``` to set up cron jobs; ```crontab -l``` to view existing cron jobs
 ### Set up ```pwd_google.py```
 save google login and password in pwd_google.py using below format
 ```
