@@ -36,7 +36,7 @@ try:
                 msg.add_attachment(content, maintype='application', subtype='pickle', filename = attachment)
 
         server = smtplib.SMTP('smtp.gmail.com', 587)
-        server.set_debuglevel(1)
+        server.set_debuglevel(0)
         server.ehlo()
         server.starttls()
         server.login(login, password)
