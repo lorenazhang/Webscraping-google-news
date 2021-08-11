@@ -4,8 +4,8 @@ The ```scrape_security_daily.py``` and ```scrape_google_weekly.py``` is running 
 ### Cron Jobs
 https://www.geeksforgeeks.org/cron-command-in-linux-with-examples/
 ```
-10 5 * * * python3 scrape_security_daily.py
-10 4 * * 7 python3 scrape_google_weekly.py
+10 5 * * * /opt/anaconda3/bin/python /Users/jingyao/Desktop/Python/nlp/scrape_security_daily.py
+10 4 * * 7 /opt/anaconda3/bin/python /Users/jingyao/Desktop/Python/nlp/scrape_google_weekly.py
 ```
 ### Set up cron jobs on mac
 1. For mac, cron and terminal needs to get access to all disks
