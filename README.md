@@ -7,9 +7,12 @@ https://www.geeksforgeeks.org/cron-command-in-linux-with-examples/
 10 5 * * * python3 scrape_security_daily.py
 10 4 * * 7 python3 scrape_google_weekly.py
 ```
-### For mac, cron needs to get access to all disks
-https://blog.bejarano.io/fixing-cron-jobs-in-mojave/
-
+### set up cron jobs on mac
+1. For mac, cron and terminal needs to get access to all disks
+   https://blog.bejarano.io/fixing-cron-jobs-in-mojave/
+2. install commond line tools package
+   ```xcode-select --install```
+4. ```which 'python'``` in terminal to get the correct python path 
 ### pwd_google.py
 save google login and password in pwd_google.py using below format
 ```
