@@ -1,5 +1,5 @@
 ### Web Sraping security and google news
-The ```scrape_security_daily.py``` and ```scrape_google_weekly.py``` is running daily/weekl to download security news into csv/pickle files, then send via email as an attachment. Gmail login and password needs to be stored in advance in a seperate file. 
+The ```scrape_security_daily.py``` and ```scrape_google_weekly.py``` is running daily/weekly to download security news into csv/pickle files, then send via email as an attachment. Gmail login and password needs to be stored in advance in a seperate file. 
 
 ### Set up ```pwd_google.py```
 save google login and password in pwd_google.py using below format
