@@ -14,6 +14,8 @@ https://www.geeksforgeeks.org/cron-command-in-linux-with-examples/
    ```xcode-select --install```
 3. ```which 'python'``` in terminal to get the correct python path 
 4. ```crontab -e``` to set up cron jobs; ```crontab -l``` to view existing cron jobs
+5. ```System Preferences -> Battery -> Schedule``` to auto-wake mac (cron jobs will not run while macbook is sleeping)
+
 ### Set up ```pwd_google.py```
 save google login and password in pwd_google.py using below format
 ```
