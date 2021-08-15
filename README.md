@@ -17,12 +17,12 @@ https://www.geeksforgeeks.org/cron-command-in-linux-with-examples/
 ### Set up cron jobs on mac
 1. For mac, cron and terminal needs to get access to all disks:
    https://blog.bejarano.io/fixing-cron-jobs-in-mojave/
-2. install commond line tools package:
+2. Install commond line tools package:
    ```xcode-select --install```
 3. ```which 'python'``` in terminal to get the correct python path 
 4. ```crontab -e``` to set up cron jobs; ```crontab -l``` to view existing cron jobs and view logs
 5. ```System Preferences -> Battery -> Schedule``` 
-   set up auto-wake (cron jobs will not run while macbook is sleeping)
-6. uncheck ```System Preferences -> Security & Privacy -> Require password after sleep```
+   Set up auto-wake (cron jobs will not run while macbook is sleeping)
+6. Uncheck ```System Preferences -> Security & Privacy -> Require password after sleep```
 
 
