@@ -23,5 +23,6 @@ https://www.geeksforgeeks.org/cron-command-in-linux-with-examples/
 4. ```crontab -e``` to set up cron jobs; ```crontab -l``` to view existing cron jobs and view logs
 5. ```System Preferences -> Battery -> Schedule``` 
    set up auto-wake (cron jobs will not run while macbook is sleeping)
+6. uncheck ```System Preferences -> Security & Privacy -> Require password after sleep```
 
 
