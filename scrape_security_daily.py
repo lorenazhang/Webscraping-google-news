@@ -137,6 +137,8 @@ try:
     # newspaper library
 
     final = rss_feeds.merge(df,how="right", left_on="link", right_on="URL")
+    final = final[['id','title', 'summary_x', 'URL', 'published', 'keywords', 'summary_y', 'text' ]]
+
     print(len(final),'unique articles in file.')
 
     # Save the file
