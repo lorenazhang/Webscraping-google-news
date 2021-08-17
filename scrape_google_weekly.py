@@ -1,4 +1,4 @@
-try:
+try: 
     import newspaper
     import feedparser
     import numpy as np
@@ -16,13 +16,17 @@ try:
     import smtplib
     from email.message import EmailMessage
     import pwd_google
+    import os
+
+    dtp = '/Users/jingyao/Desktop/Python/nlp/data'
+    to_list = "lorenazhang@gmail.com,jingyao.zhang@wellsfargo.com"
 
     def send_email(login
                    , password
                    , subject
+                   , to_list
                    , content = None
                    , attachment = None
-                   , to_list = "lorenazhang@gmail.com,jingyao.zhang@wellsfargo.com"
                    ):
         msg = EmailMessage()
         msg.set_content(content)
@@ -33,7 +37,7 @@ try:
         if attachment is not None:
             with open(attachment, 'rb') as content_file:
                 content = content_file.read()
-                msg.add_attachment(content, maintype='application', subtype='pickle', filename = attachment)
+                msg.add_attachment(content, maintype='application', subtype='pickle', filename = os.path.basename(attachment))
 
         server = smtplib.SMTP('smtp.gmail.com', 587)
         server.set_debuglevel(0)
@@ -46,7 +50,8 @@ try:
 
     today = pd.Timestamp.today()
     sunday = today - datetime.timedelta(days = today.dayofweek) + datetime.timedelta(days = 6)
-    sunday = sunday.strftime('%Y%m%d')
+    sunday_str = sunday.strftime('%Y%m%d')
+    filename = f'df_googlenews_{sunday_str}.p'
 
     LOGIN    = pwd_google.login
     PASSWORD = pwd_google.pwd
@@ -117,17 +122,21 @@ try:
     df_final.drop(columns = ['published'], inplace = True)
     df_final['keywords'] = [','.join(a) for a in df_final['keywords'].copy(deep=True)]
 
-    pickle.dump(df_final, open(f'df_googlenews_{sunday}.p', 'wb'))
+    pickle.dump(df_final, open(f'{dtp}/{filename}', 'wb'))
+    print(f'pickle file created')
 
     #sent email with attachment
+
     send_email(login = LOGIN
-              , password = pwd_google.pwd
-              , subject = f'Google News for {sunday}'
-              , content = f'Please find attached the google news for week {sunday}'
-              , attachment = f'df_googlenews_{sunday}.p')
+              , password = PASSWORD
+              , to_list = to_list
+              , subject = f'Google News for {sunday_str}'
+              , content = f'Please find attached the google news for week {sunday_str}'
+              , attachment = f'{dtp}/{filename}')
 except:
     send_email(login = LOGIN
-              , password = pwd_google.pwd
-              , subject = f'Web scrapping Google news failed for {sunday}'
-              , content = f'Job failed for Web scrapping Google news for week {sunday}'
+              , password = PASSWORD
+              , subject = f'Web scrapping Google news failed for {sunday_str}'
+              , to_list = to_list
+              , content = f'Job failed for Web scrapping Google news for week {sunday_str}'
               )

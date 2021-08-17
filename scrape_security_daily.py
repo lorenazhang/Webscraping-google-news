@@ -16,13 +16,17 @@ try:
     import smtplib
     from email.message import EmailMessage
     import pwd_google
+    import os
+
+    dtp = '/Users/jingyao/Desktop/Python/nlp/data'
+    to_list = "lorenazhang@gmail.com,jingyao.zhang@wellsfargo.com"
 
     def send_email(login
                    , password
                    , subject
+                   , to_list
                    , content = None
                    , attachment = None
-                   , to_list = "lorenazhang@gmail.com,jingyao.zhang@wellsfargo.com"
                    ):
         msg = EmailMessage()
         msg.set_content(content)
@@ -33,7 +37,7 @@ try:
         if attachment is not None:
             with open(attachment, 'rb') as content_file:
                 content = content_file.read()
-                msg.add_attachment(content, maintype='application', subtype='pickle', filename = attachment)
+                msg.add_attachment(content, maintype='application', subtype='pickle', filename = os.path.basename(attachment))
 
         server = smtplib.SMTP('smtp.gmail.com', 587)
         server.set_debuglevel(0)
@@ -46,7 +50,7 @@ try:
 
     today = pd.Timestamp.today()
     today_str = today.strftime('%Y%m%d')
-    filename = 'securitynews_' + datetime.datetime.now().strftime("date_%Y.%m.%d_time_%H.%M") + '.pkl'
+    filename = f'securitynews_date_{today_str}.p' 
 
     LOGIN    = pwd_google.login
     PASSWORD = pwd_google.pwd
@@ -138,24 +142,23 @@ try:
 
     final = rss_feeds.merge(df,how="right", left_on="link", right_on="URL")
     final = final[['id','title', 'summary_x', 'URL', 'published', 'keywords', 'summary_y', 'text' ]]
-
     print(len(final),'unique articles in file.')
 
     # Save the file
-    final.to_pickle(filename, protocol= 4)
+    pickle.dump(final, open(f'{dtp}/{filename}','wb'))
     print('Pickle file created')
 
     #sent email with attachment
-
     send_email(login = LOGIN
-              , password = pwd_google.pwd
+              , password = PASSWORD
               , subject = f'Security News for {today_str}'
+              , to_list = to_list
               , content = f'Please find attached the security news for {today_str}'
-              , attachment = filename)
+              , attachment = f'{dtp}/{filename}')
 except:
     send_email(login = LOGIN
-              , password = pwd_google.pwd
+              , password = PASSWORD
               , subject = f'Web scrapping Security news failed for {today_str}'
+              , to_list = to_list
               , content = f'Job failed for Web scrapping Google news for {today_str}'
               )
-
