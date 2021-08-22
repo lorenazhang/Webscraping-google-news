@@ -18,7 +18,8 @@ try:
     import pwd_google
     import os
 
-    dtp = '/Users/jingyao/Desktop/Python/nlp/data'
+    #dtp = '/Users/jingyao/Desktop/Python/nlp/data'
+    dtp = '/home/pi/webscraping/data' 
     to_list = "lorenazhang@gmail.com,jingyao.zhang@wellsfargo.com"
 
     def send_email(login
