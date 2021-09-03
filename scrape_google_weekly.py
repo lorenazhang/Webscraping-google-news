@@ -52,7 +52,7 @@ try:
     today = pd.Timestamp.today()
     sunday = today - datetime.timedelta(days = today.dayofweek) + datetime.timedelta(days = 6)
     sunday_str = sunday.strftime('%Y%m%d')
-    filename = f'df_googlenews_{sunday_str}.p'
+    filename = f'googlenews_{sunday_str}.pkl'
 
     LOGIN    = pwd_google.login
     PASSWORD = pwd_google.pwd

@@ -51,7 +51,7 @@ try:
 
     today = pd.Timestamp.today()
     today_str = today.strftime('%Y%m%d')
-    filename = f'securitynews_date_{today_str}.p' 
+    filename = f'securitynews_date_{today_str}.pkl' 
 
     LOGIN    = pwd_google.login
     PASSWORD = pwd_google.pwd
